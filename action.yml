@@ -35,6 +35,7 @@ runs:
 
     - name: Change goodbye.sh permissions
       run: chmod +x goodbye.sh
+      shell: bash
 
     - name: Run goodbye.sh
       run: goodbye.sh
