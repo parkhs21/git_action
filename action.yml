@@ -4,6 +4,12 @@ author: parkhs21
 runs:
   using: "composite"
   steps:
+    - name: Set Github Path
+      shell: bash
+      run: echo "$GITHUB_ACTION_PATH" >> $GITHUB_PATH
+      env:
+        GITHUB_ACTION_PATH: ${{ github.action_path }}
+
     - name: Install dependencies
       shell: bash
       run: |
