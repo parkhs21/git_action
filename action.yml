@@ -4,20 +4,16 @@ author: parkhs21
 runs:
   using: "composite"
   steps:
-    - name: Set Github Path
-      shell: bash
-      run: echo "$GITHUB_ACTION_PATH" >> $GITHUB_PATH
-      env:
-        GITHUB_ACTION_PATH: ${{ github.action_path }}
-
     - name: Install dependencies
       shell: bash
       run: |
         python -m pip install --upgrade pip
-        ls
-        pwd
-        pip install -r ./requirements.txt
+        pip install -r $GITHUB_ACTION_PATH/requirements.txt
+      env:
+        GITHUB_ACTION_PATH: ${{ github.action_path }}
 
     - name: Test py file
       shell: bash
-      run: python main.py
+      run: python $GITHUB_ACTION_PATH/main.py
+      env:
+        GITHUB_ACTION_PATH: ${{ github.action_path }}
