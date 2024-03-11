@@ -1,6 +1,10 @@
 name: Code to Manul Python
 author: parkhs21
 
+inputs:
+  openai-token:
+    required: true
+
 runs:
   using: "composite"
   steps:
@@ -17,3 +21,9 @@ runs:
       run: python $GITHUB_ACTION_PATH/main.py
       env:
         GITHUB_ACTION_PATH: ${{ github.action_path }}
+
+    - name: temp
+      shell: bash
+      run: echo "$OPENAI_TOKEN"
+      env:
+        OPENAI_TOKEN: ${{ inputs.openai-token }}
