@@ -2,7 +2,7 @@ name: Code to Manul Python
 author: parkhs21
 
 inputs:
-  openai-token:
+  openai-key:
     required: true
 
 runs:
@@ -17,7 +17,7 @@ runs:
       shell: bash
       run: |
         python -m pip install --upgrade pip
-        pip install -r $GITHUB_ACTION_PATH/requirements.txt
+        pip install -q -r $GITHUB_ACTION_PATH/requirements.txt
       env:
         GITHUB_ACTION_PATH: ${{ github.action_path }}
 
@@ -26,9 +26,3 @@ runs:
       run: python $GITHUB_ACTION_PATH/main.py
       env:
         GITHUB_ACTION_PATH: ${{ github.action_path }}
-
-    - name: temp
-      shell: bash
-      run: echo "$OPENAI_TOKEN"
-      env:
-        OPENAI_TOKEN: ${{ inputs.openai-token }}
