@@ -1,10 +1,9 @@
-import os
+import dotenv
+from langchain_openai import ChatOpenAI
 
-print()
-print(os.getcwd())
-print(file_list := os.listdir())
+dotenv.load_dotenv()
 
-for file in file_list:
-    if file.endswith(".py"):
-        print()
-        exec(open(file).read())
+llm = ChatOpenAI()
+chat = llm.invoke("how can langsmith help with testing?, answer in korean")
+
+print(chat)
