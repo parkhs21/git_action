@@ -27,7 +27,7 @@ runs:
 
     - name: Set dotenv file
       shell: bash
-      run: echo OPENAI_API_KEY=${{ inputs.openai-key }} > .env
+      run: echo OPENAI_API_KEY=${{ inputs.openai-key }} > $GITHUB_ACTION_PATH/.env
 
     - name: Test py file
       shell: bash
