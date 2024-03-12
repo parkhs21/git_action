@@ -8,7 +8,7 @@ inputs:
 runs:
   using: "composite"
   steps:
-    - name: Set up Path Env
+    - name: Set Path Env
       shell: bash
       run: echo "GITHUB_ACTION_PATH=$GITHUB_ACTION_PATH" >> "$GITHUB_ENV"
       env:
@@ -24,6 +24,10 @@ runs:
       run: |
         python -q -m pip install --upgrade pip
         pip install -q -r $GITHUB_ACTION_PATH/requirements.txt
+
+    - name: Set dotenv file
+      shell: bash
+      run: echo OPENAI_API_KEY=${{ inputs.openai-key }} > .env
 
     - name: Test py file
       shell: bash
