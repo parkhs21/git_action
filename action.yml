@@ -32,3 +32,10 @@ runs:
     - name: Test py file
       shell: bash
       run: python $GITHUB_ACTION_PATH/main.py
+
+    - name: Upload file
+      uses: actions/upload-artifact@4
+      with:
+        name: test-file
+        path: test.adoc
+
