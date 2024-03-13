@@ -1,9 +1,9 @@
-import dotenv
-from langchain_openai import ChatOpenAI
+content = [
+    "[%hardbreaks]\n",
+    "test.adoc\n",
+    "test.adoc\n"
+]
 
-dotenv.load_dotenv()
-
-llm = ChatOpenAI()
-chat = llm.invoke("how can langsmith help with testing?, answer in korean")
-
-print(chat)
+with open("test.adoc", "w") as file:
+    for c in content:
+        file.write(c)
