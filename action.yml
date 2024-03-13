@@ -34,7 +34,7 @@ runs:
       run: python $GITHUB_ACTION_PATH/main.py
 
     - name: Upload file
-      uses: actions/upload-artifact@4
+      uses: actions/upload-artifact@v4
       with:
         name: test-file
         path: test.adoc
