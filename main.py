@@ -1,9 +1,9 @@
-content = [
-    "[%hardbreaks]\n",
-    "test.adoc\n",
-    "test.adoc\n"
-]
+import dotenv
+from langchain_openai import ChatOpenAI
 
-with open("test.adoc", "w") as file:
-    for c in content:
-        file.write(c)
+dotenv.load_dotenv()
+
+llm = ChatOpenAI()
+chat = llm.invoke("Do you know what TmaxSoft is? Answers should be in Korean.")
+
+print(chat)
