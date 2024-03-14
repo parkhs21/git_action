@@ -4,6 +4,9 @@ author: parkhs21
 inputs:
   openai-key:
     required: true
+outputs:
+  result:
+    value: ${{ steps.test-python.outputs.result }}
 
 runs:
   using: "composite"
@@ -31,11 +34,12 @@ runs:
 
     - name: Test py file
       shell: bash
+      id: test-python
       run: python $GITHUB_ACTION_PATH/main.py
 
-    - name: Upload file
-      uses: actions/upload-artifact@v4
-      with:
-        name: test-file
-        path: test.adoc
+    # - name: Upload file
+    #   uses: actions/upload-artifact@v4
+    #   with:
+    #     name: test-file
+    #     path: test.adoc
 
