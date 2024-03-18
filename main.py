@@ -4,8 +4,9 @@ from langchain_openai import ChatOpenAI
 
 dotenv.load_dotenv()
 
-llm = ChatOpenAI()
-chat = llm.invoke("Do you know what TmaxSoft is? Answers should be in Korean.")
+# llm = ChatOpenAI()
+# chat = llm.invoke("Do you know what TmaxSoft is? Answers should be in Korean.")
+chat = "Test Answer."
 
-os.environ["GITHUB_OUTPUT"]["result"] = chat
-print(chat)
+with open("test.adoc", "w") as file:
+    file.write(chat)
