@@ -178,3 +178,6 @@ pyrightconfig.json
 
 # adoc files
 *.adoc
+
+# local test files
+local_test/*
