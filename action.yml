@@ -37,9 +37,20 @@ runs:
       id: test-python
       run: python $GITHUB_ACTION_PATH/main.py
 
-    # - name: Upload file
-    #   uses: actions/upload-artifact@v4
-    #   with:
-    #     name: test-file
-    #     path: test.adoc
+    - name: Upload file
+      uses: actions/upload-artifact@v4
+      id: upload-step
+      with:
+        name: test-file
+        path: test.adoc
+
+    - name: Update comment
+      uses: peter-evans/create-or-update-comment@v2
+      with:
+        issue-number: 2
+        body: |-
+          ## Test
+          ${{ steps.upload-step.outputs.artifact-url }}
+
+
 
