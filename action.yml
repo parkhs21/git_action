@@ -37,9 +37,9 @@ runs:
       env:
         OPENAI_API_KEY: ${{ inputs.openai-key }}
 
-    - name: Upload file
+    - name: Upload files
       uses: actions/upload-artifact@v4
-      id: upload-step
+      id: upload-files
       with:
         name: answer-files
         path: answer.adoc
@@ -67,5 +67,5 @@ runs:
           | Name     | Link   |
           |----------|--------|
           | Code     | ${{ github.server_url }}/${{ github.repository }}/tree/${{ github.sha }} |
-          | Logs     | ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }} |
-          | Files    | ${{ steps.upload-artifacts.outputs.artifact-url }} |
+          | Logs     | ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}/job/${{ github.job }} |
+          | Files    | ${{ steps.upload-files.outputs.artifact-url }} |
