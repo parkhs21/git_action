@@ -17,16 +17,16 @@ runs:
       env:
         GITHUB_ACTION_PATH: ${{ github.action_path }}
 
-    # - name: Set up python 3.9
-    #   uses: actions/setup-python@v2
-    #   with:
-    #     python-version: 3.9
+    - name: Set up python 3.9
+      uses: actions/setup-python@v2
+      with:
+        python-version: 3.9
+        cache: pip
+        cache-dependency-path: $GITHUB_ACTION_PATH/requirements.txt
 
-    # - name: Install dependencies
-    #   shell: bash
-    #   run: |
-    #     python -q -m pip install --upgrade pip
-    #     pip install -q -r $GITHUB_ACTION_PATH/requirements.txt
+    - name: Install dependencies
+      shell: bash
+      run: pip install -q -r $GITHUB_ACTION_PATH/requirements.txt
 
     # - name: Set dotenv file
     #   shell: bash
@@ -44,37 +44,16 @@ runs:
     #     name: test-file
     #     path: test.adoc
 
-    # - name: Update comment
-    #   uses: peter-evans/create-or-update-comment@v2
-    #   with:
-    #     issue-number: 2
-    #     body: |-
-    #       ## Test
-    #       ${{ steps.upload-step.outputs.artifact-url }}
-
-    # - name: create issue template
-    #   shell: bash
-    #   run: cp $GITHUB_ACTION_PATH/test.md ./test.md
-
-    # - name: create issue file
-    #   shell: bash
-    #   run: |
-    #     gh issue --repo ${{ github.repository }} \
-    #       create --title "Issue title" --body "Issue body"
-    #   env:
-    #     GH_TOKEN: ${{ github.token }}
-
-    # - name: create issue
-    #   uses: peter-evans/create-issue-from-file@v5
-    #   with:
-    #     title: "[TEST] test issue"
-    #     content-filepath: ./test.md
+    - name: current time
+      shell: bash
+      id: current-time
+      run: echo "::set-output name=date::$(date -d '+9 hours' +'%b %d %R')"
 
     - name: create issue
       uses: dacbd/create-issue-action@main
       with:
         token: ${{ github.token }}
-        title: "[TEST] test issue"
+        title: "[Manual] Manual Created.(${{ steps.current-time.outputs.date }})"
         body: |
           ### Test
           [Failed Run](https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }})
