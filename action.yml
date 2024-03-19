@@ -32,6 +32,7 @@ runs:
       run: python $GITHUB_ACTION_PATH/main.py
       env:
         OPENAI_API_KEY: ${{ inputs.openai-key }}
+        EVENT_TYPE: ${{ github.event_name }}
         COMMENT: ${{ github.event.comment.body }}
 
     - name: Upload Files
@@ -47,6 +48,7 @@ runs:
       run: echo "::set-output name=date::$(date -d '+9 hours' +'%b %d %R')"
 
     - name: Create Issue
+      if: ${{ github.event_name != "issue_comment" }}
       uses: dacbd/create-issue-action@main
       with:
         token: ${{ github.token }}
@@ -66,3 +68,11 @@ runs:
           | Code     | ${{ github.server_url }}/${{ github.repository }}/tree/${{ github.sha }} |
           | Logs     | ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }} |
           | Files    | ${{ steps.upload-files.outputs.artifact-url }} |
+
+    - name: Create Comment
+      if: ${{ github.event_name == "issue_comment" && github.event.issue.label.name == "code-to-manual" }}
+      uses: peter-evans/create-or-update-comment@v4
+      with:
+        issue-number: ${{ github.event.issue.number }}
+        body: |
+          ### Adjust Manual
