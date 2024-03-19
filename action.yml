@@ -52,13 +52,21 @@ runs:
     #       ## Test
     #       ${{ steps.upload-step.outputs.artifact-url }}
 
-    - name: create issue template
-      shell: bash
-      run: cp $GITHUB_ACTION_PATH/test.md ./test.md
+    # - name: create issue template
+    #   shell: bash
+    #   run: cp $GITHUB_ACTION_PATH/test.md ./test.md
 
-    - name: create issue
-      uses: peter-evans/create-issue-from-file@v5
-      with:
-        title: "[TEST] test issue"
-        content-filepath: ./test.md
+    - name: create issue file
+      shell: bash
+      run: |
+        gh issue --repo ${{ github.repository }} \
+          create --title "Issue title" --body "Issue body"
+      env:
+        GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+    # - name: create issue
+    #   uses: peter-evans/create-issue-from-file@v5
+    #   with:
+    #     title: "[TEST] test issue"
+    #     content-filepath: ./test.md
 
