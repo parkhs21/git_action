@@ -53,7 +53,7 @@ runs:
     #       ${{ steps.upload-step.outputs.artifact-url }}
 
     - name: create issue
-      uses: dacbd/create-issue-action@main
+      uses: peter-evans/create-issue-action@main
       with:
         title: test issue
         content-filepath: $GITHUB_ACTION_PATH/test.md
