@@ -32,6 +32,7 @@ runs:
       run: python $GITHUB_ACTION_PATH/main.py
       env:
         OPENAI_API_KEY: ${{ inputs.openai-key }}
+        COMMENT: ${{ github.event.comment.body }}
 
     - name: Upload Files
       uses: actions/upload-artifact@v4
