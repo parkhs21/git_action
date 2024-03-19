@@ -17,39 +17,35 @@ runs:
       env:
         GITHUB_ACTION_PATH: ${{ github.action_path }}
 
-    - name: Set up python 3.9
+    - name: Set Up Python 3.9
       uses: actions/setup-python@v2
       with:
         python-version: 3.9
 
-    - name: Install dependencies
+    - name: Install Dependencies
       shell: bash
       run: pip install -q -r $GITHUB_ACTION_PATH/requirements.txt
 
-    # - name: Set dotenv file
-    #   shell: bash
-    #   run: echo OPENAI_API_KEY=${{ inputs.openai-key }} > $GITHUB_ACTION_PATH/.env
-
-    - name: Test py file
+    - name: Test py File
       shell: bash
       id: test-python
       run: python $GITHUB_ACTION_PATH/main.py
       env:
         OPENAI_API_KEY: ${{ inputs.openai-key }}
 
-    - name: Upload files
+    - name: Upload Files
       uses: actions/upload-artifact@v4
       id: upload-files
       with:
         name: answer-files
         path: answer.adoc
 
-    - name: Current time
+    - name: Current Time
       shell: bash
       id: current-time
       run: echo "::set-output name=date::$(date -d '+9 hours' +'%b %d %R')"
 
-    - name: Create issue
+    - name: Create Issue
       uses: dacbd/create-issue-action@main
       with:
         token: ${{ github.token }}
