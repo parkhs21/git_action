@@ -51,7 +51,7 @@ runs:
       uses: dacbd/create-issue-action@main
       with:
         token: ${{ github.token }}
-        title: "[Manual] Manual Created.(${{ steps.current-time.outputs.date }})"
+        title: "[Manual] Manual Created (${{ steps.current-time.outputs.date }})"
         body: |
           ### Test
           [Failed Run](https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }})
@@ -59,3 +59,4 @@ runs:
           Workflow name - `${{ github.workflow }}`
           Job -           `${{ github.job }}`
           status -        `${{ job.status }}`
+        labels: code-to-manual
