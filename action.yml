@@ -17,40 +17,47 @@ runs:
       env:
         GITHUB_ACTION_PATH: ${{ github.action_path }}
 
-    - name: Set up python 3.9
-      uses: actions/setup-python@v2
+    # - name: Set up python 3.9
+    #   uses: actions/setup-python@v2
+    #   with:
+    #     python-version: 3.9
+
+    # - name: Install dependencies
+    #   shell: bash
+    #   run: |
+    #     python -q -m pip install --upgrade pip
+    #     pip install -q -r $GITHUB_ACTION_PATH/requirements.txt
+
+    # - name: Set dotenv file
+    #   shell: bash
+    #   run: echo OPENAI_API_KEY=${{ inputs.openai-key }} > $GITHUB_ACTION_PATH/.env
+
+    # - name: Test py file
+    #   shell: bash
+    #   id: test-python
+    #   run: python $GITHUB_ACTION_PATH/main.py
+
+    # - name: Upload file
+    #   uses: actions/upload-artifact@v4
+    #   id: upload-step
+    #   with:
+    #     name: test-file
+    #     path: test.adoc
+
+    # - name: Update comment
+    #   uses: peter-evans/create-or-update-comment@v2
+    #   with:
+    #     issue-number: 2
+    #     body: |-
+    #       ## Test
+    #       ${{ steps.upload-step.outputs.artifact-url }}
+
+    - name: create issue
+      id: create-issue
+      uses: peter-evans/create-issue-from-file@v5
       with:
-        python-version: 3.9
-
-    - name: Install dependencies
-      shell: bash
-      run: |
-        python -q -m pip install --upgrade pip
-        pip install -q -r $GITHUB_ACTION_PATH/requirements.txt
-
-    - name: Set dotenv file
-      shell: bash
-      run: echo OPENAI_API_KEY=${{ inputs.openai-key }} > $GITHUB_ACTION_PATH/.env
-
-    - name: Test py file
-      shell: bash
-      id: test-python
-      run: python $GITHUB_ACTION_PATH/main.py
-
-    - name: Upload file
-      uses: actions/upload-artifact@v4
-      id: upload-step
-      with:
-        name: test-file
-        path: test.adoc
-
-    - name: Update comment
-      uses: peter-evans/create-or-update-comment@v2
-      with:
-        issue-number: 2
-        body: |-
-          ## Test
-          ${{ steps.upload-step.outputs.artifact-url }}
+        title: [TEST] test issue
+        content-filepath: $GITHUB_ACTION_PATH/test.md
 
 
 
