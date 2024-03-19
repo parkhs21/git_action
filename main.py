@@ -9,7 +9,7 @@ from langchain_openai import ChatOpenAI
 
 print(os.environ["EVENT_TYPE"])
 
-if os.environ["EVENT_TYPE"] is "issue_comment":
+if os.environ["EVENT_TYPE"] == "issue_comment":
     chat = "Test Answer about Comment."
 else:
     chat = "Test Answer about PR."
