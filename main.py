@@ -7,7 +7,6 @@ from langchain_openai import ChatOpenAI
 # llm = ChatOpenAI()
 # chat = llm.invoke("Do you know what TmaxSoft is? Answers should be in Korean.")
 
-print(os.environ["github"]["event"]["comment"])
 
 if os.environ["COMMENT"]:
     chat = "Test Answer about Comment."
