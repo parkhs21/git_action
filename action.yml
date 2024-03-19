@@ -63,5 +63,5 @@ runs:
           | Name     | Link   |
           |----------|--------|
           | Code     | ${{ github.server_url }}/${{ github.repository }}/tree/${{ github.sha }} |
-          | Logs     | ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}/job/${{ github.job }} |
+          | Logs     | ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }} |
           | Files    | ${{ steps.upload-files.outputs.artifact-url }} |
