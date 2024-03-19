@@ -22,7 +22,6 @@ runs:
       with:
         python-version: 3.9
         cache: pip
-        cache-dependency-path: $GITHUB_ACTION_PATH/requirements.txt
 
     - name: Install dependencies
       shell: bash
