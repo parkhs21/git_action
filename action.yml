@@ -62,7 +62,7 @@ runs:
         gh issue --repo ${{ github.repository }} \
           create --title "Issue title" --body "Issue body"
       env:
-        GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        GH_TOKEN: ${{ github.token }}
 
     # - name: create issue
     #   uses: peter-evans/create-issue-from-file@v5
