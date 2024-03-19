@@ -48,7 +48,7 @@ runs:
       run: echo "::set-output name=date::$(date -d '+9 hours' +'%b %d %R')"
 
     - name: Create Issue
-      if: ${{ github.event_name != "issue_comment" }}
+      if: ${{ github.event_name != 'issue_comment' }}
       uses: dacbd/create-issue-action@main
       with:
         token: ${{ github.token }}
@@ -70,7 +70,7 @@ runs:
           | Files    | ${{ steps.upload-files.outputs.artifact-url }} |
 
     - name: Create Comment
-      if: ${{ github.event_name == "issue_comment" && github.event.issue.label.name == "code-to-manual" }}
+      if: ${{ github.event_name == 'issue_comment' && github.event.issue.label.name == 'code-to-manual' }}
       uses: peter-evans/create-or-update-comment@v4
       with:
         issue-number: ${{ github.event.issue.number }}
