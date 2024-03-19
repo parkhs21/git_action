@@ -5,7 +5,7 @@ from langchain_openai import ChatOpenAI
 # dotenv.load_dotenv()
 
 print("TEST")
-print(os.environ("COMMENT"))
+print(os.environ["COMMENT"])
 print("TEST")
 
 llm = ChatOpenAI()
