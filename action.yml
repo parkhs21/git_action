@@ -70,7 +70,7 @@ runs:
           | Files    | ${{ steps.upload-files.outputs.artifact-url }} |
 
     - name: Create Comment
-      if: ${{ github.event_name == 'issue_comment' }}
+      if: ${{ github.event_name == 'issue_comment' && startsWith(github.event.issue.title, '[Manual]') }}
       uses: peter-evans/create-or-update-comment@v4
       with:
         issue-number: ${{ github.event.issue.number }}
