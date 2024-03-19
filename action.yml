@@ -13,8 +13,7 @@ runs:
   steps:
     - name: Set Path Env
       shell: bash
-      # run: echo "GITHUB_ACTION_PATH=$GITHUB_ACTION_PATH" >> "$GITHUB_ENV"
-      run: echo $GITHUB_ACTION_PATH >> $GITHUB_PATH
+      run: echo "GITHUB_ACTION_PATH=$GITHUB_ACTION_PATH" >> "$GITHUB_ENV"
       env:
         GITHUB_ACTION_PATH: ${{ github.action_path }}
 
@@ -53,9 +52,13 @@ runs:
     #       ## Test
     #       ${{ steps.upload-step.outputs.artifact-url }}
 
+    - name: create issue template
+      shell: bash
+      run: cp $GITHUB_ACTION_PATH/test.md ./test.md
+
     - name: create issue
       uses: peter-evans/create-issue-from-file@v5
       with:
-        title: test issue
+        title: "[TEST] test issue"
         content-filepath: ./test.md
 
