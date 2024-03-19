@@ -9,4 +9,4 @@ chat = llm.invoke("Do you know what TmaxSoft is? Answers should be in Korean.")
 # chat = "Test Answer."
 
 with open("answer.adoc", "w") as file:
-    file.write(chat)
+    file.write(chat.content)
