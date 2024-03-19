@@ -53,10 +53,9 @@ runs:
     #       ${{ steps.upload-step.outputs.artifact-url }}
 
     - name: create issue
-      id: create-issue
       uses: peter-evans/create-issue-from-file@v5
       with:
-        title: [TEST] test issue
+        title: test issue
         content-filepath: $GITHUB_ACTION_PATH/test.md
 
 
