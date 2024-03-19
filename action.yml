@@ -26,9 +26,9 @@ runs:
       shell: bash
       run: pip install -q -r $GITHUB_ACTION_PATH/requirements.txt
 
-    - name: Test py File
+    - name: Run Main File
       shell: bash
-      id: test-python
+      id: run-python
       run: python $GITHUB_ACTION_PATH/main.py
       env:
         OPENAI_API_KEY: ${{ inputs.openai-key }}
@@ -43,6 +43,7 @@ runs:
         path: answer.adoc
 
     - name: Current Time
+      if: ${{ github.event_name != 'issue_comment' }}
       shell: bash
       id: current-time
       run: echo "::set-output name=date::$(date -d '+9 hours' +'%b %d %R')"
@@ -76,6 +77,8 @@ runs:
         issue-number: ${{ github.event.issue.number }}
         body: |
           ## Adjust Manual
+
+          Result: ${{ steps.run-python.outputs.result }}
 
           새롭게 생성된 로그와 파일입니다.
 
