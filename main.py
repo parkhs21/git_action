@@ -7,8 +7,9 @@ from langchain_openai import ChatOpenAI
 # llm = ChatOpenAI()
 # chat = llm.invoke("Do you know what TmaxSoft is? Answers should be in Korean.")
 
+print(os.environ["EVENT_TYPE"])
 
-if os.environ["COMMENT"]:
+if os.environ["EVENT_TYPE"] is "issue_comment":
     chat = "Test Answer about Comment."
 else:
     chat = "Test Answer about PR."
