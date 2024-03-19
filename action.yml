@@ -55,7 +55,7 @@ runs:
         title: "[Manual] Manual Generated (${{ steps.current-time.outputs.date }})"
         labels: code-to-manual
         body: |
-          ### Code to Manual
+          ## Code to Manual
 
           아래 링크에서 로그를 확인하고, 첨부파일을 다운 받을 수 있습니다.
 
@@ -75,7 +75,7 @@ runs:
       with:
         issue-number: ${{ github.event.issue.number }}
         body: |
-          ### Adjust Manual
+          ## Adjust Manual
 
           새롭게 생성된 로그와 파일입니다.
 
