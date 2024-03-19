@@ -17,10 +17,10 @@ runs:
       env:
         GITHUB_ACTION_PATH: ${{ github.action_path }}
 
-    # - name: Set up python 3.9
-    #   uses: actions/setup-python@v2
-    #   with:
-    #     python-version: 3.9
+    - name: Set up python 3.9
+      uses: actions/setup-python@v2
+      with:
+        python-version: 3.9
 
     # - name: Install dependencies
     #   shell: bash
@@ -53,10 +53,8 @@ runs:
     #       ${{ steps.upload-step.outputs.artifact-url }}
 
     - name: create issue
-      uses: peter-evans/create-issue-from-file@v5
+      uses: dacbd/create-issue-action@main
       with:
         title: test issue
-        content-filepath: test.md
-
-
+        content-filepath: $GITHUB_ACTION_PATH/test.md
 
