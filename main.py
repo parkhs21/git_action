@@ -24,7 +24,7 @@ if os.environ["EVENT_TYPE"] == "issue_comment":
     chat = llm.invoke(os.environ["COMMENT"])
     
 else:
-    with open("./local_test/src/org/yccheok/jstock/gui/OptionsJPanel.java") as file:
+    with open("./src/org/yccheok/jstock/gui/OptionsJPanel.java") as file:
         content = file.read()
     chat = llm.invoke(prompt(content))
 
