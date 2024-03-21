@@ -30,7 +30,7 @@ else:
 
 
 
-command = '"::set-output name=result::' + chat + '"'
+command = '"::set-output name=result::' + chat.content + '"'
 os.system('echo ' + command)
 
 
