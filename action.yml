@@ -80,11 +80,11 @@ runs:
         body: |
           ## Adjust Manual
 
-          Result: ${{ steps.run-python.outputs.result }}
-
           새롭게 생성된 로그와 파일입니다.
 
           | Name     | Link   |
           |----------|--------|
           | Logs     | ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }} |
           | Files    | ${{ steps.upload-files.outputs.artifact-url }} |
+
+          Result: ${{ steps.run-python.outputs.result }}
