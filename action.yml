@@ -70,6 +70,8 @@ runs:
           | Logs     | ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }} |
           | Files    | ${{ steps.upload-files.outputs.artifact-url }} |
 
+          Result: ${{ steps.run-python.outputs.result }}
+
     - name: Create Comment
       if: ${{ github.event_name == 'issue_comment' && startsWith(github.event.issue.title, '[Manual]') }}
       uses: peter-evans/create-or-update-comment@v4
