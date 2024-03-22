@@ -1,26 +1,10 @@
-from langchain_openai import ChatOpenAI
+from langchain_community.document_loaders import TextLoader
+from langchain_openai import OpenAIEmbeddings
+from langchain_text_splitters import CharacterTextSplitter
+from langchain_community.vectorstores import Chroma
 
-llm = ChatOpenAI()
-
-
-prompt = lambda code: f'''
-Our purpose is to create a user manual for the entire program.
-
-In the meantime, let's create a table of contents. The table of contents is the most important bone of the manual.
-Since this manual is for the user, not the developer, it should be organized around the screens that will be configured.
-
-Let's create a large table of contents with the following code.
-Let’s think step by step.
-
-##### Below Code #####
-{code}
-'''.strip()
-
-
-with open("./local_test/gui_option/OptionsJPanel.java") as file:
-    content = file.read()
-    
-
-
-chat = llm.invoke(prompt(content))
-print(chat.content)
+raw_documents = TextLoader('./local_test/src/org/yccheok/jstock/gui/OptionsJPanel.java').load()
+print(raw_documents)
+text_splitter = CharacterTextSplitter(chunk_size=1000, chunk_overlap=0)
+documents = text_splitter.split_documents(raw_documents)
+db = Chroma.from_documents(documents, OpenAIEmbeddings())
