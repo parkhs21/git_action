@@ -4,9 +4,6 @@ author: parkhs21
 inputs:
   openai-key:
     required: true
-outputs:
-  result:
-    value: ${{ steps.test-python.outputs.result }}
 
 runs:
   using: "composite"
