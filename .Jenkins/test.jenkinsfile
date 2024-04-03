@@ -1,17 +1,8 @@
-pipeline {
-    agent any
-    
-    stages() {
-        stage('Test') {
-            steps {
-                sh 'ls -al'
-            }
-        }
-
-        stage('Docker Build') {
-            steps {
-                sh 'docker build -t git_action .'
-            }
-        }
+node('dind') {
+    stage('Checkout') {
+        checkout scm
+    }
+    stage('Build') {
+        docker.build('gen_manual')
     }
 }
