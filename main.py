@@ -18,22 +18,12 @@ Let’s think step by step.
 {code}
 '''.strip()
 
-
-
-if os.environ["EVENT_TYPE"] == "issue_comment":
-    chat = llm.invoke(os.environ["COMMENT"])
     
-else:
-    with open("./src/org/yccheok/jstock/gui/OptionsJPanel.java") as file:
-        content = file.read()
-    chat = llm.invoke(prompt(content))
-
-
-
-command = '"::set-output name=result::' + chat.content + '"'
-os.system('echo ' + command)
-
+with open("/root/workspace/source_files/src/org/yccheok/jstock/gui/OptionsJPanel.java") as file:
+    content = file.read()
+    
+chat = llm.invoke(prompt(content))
 
 print(chat)
-with open("answer.adoc", "w") as file:
-    file.write(chat.content)
+# with open("answer.adoc", "w") as file:
+#     file.write(chat.content)
