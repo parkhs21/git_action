@@ -19,7 +19,7 @@ Let’s think step by step.
 '''.strip()
 
     
-with open("/root/workspace/source_files/src/org/yccheok/jstock/gui/OptionsJPanel.java") as file:
+with open("./src/org/yccheok/jstock/gui/OptionsJPanel.java") as file:
     content = file.read()
     
 chat = llm.invoke(prompt(content))
