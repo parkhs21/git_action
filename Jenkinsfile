@@ -1,4 +1,4 @@
-node('dind') {
+node('code_to_manual') {
     checkout scm
 
     stage('Build') {
