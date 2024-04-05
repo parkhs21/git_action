@@ -1,6 +1,4 @@
-import os
 from langchain_openai import ChatOpenAI
-
 
 llm = ChatOpenAI()
 
@@ -25,5 +23,5 @@ with open("./src/org/yccheok/jstock/gui/OptionsJPanel.java") as file:
 chat = llm.invoke(prompt(content))
 
 print(chat)
-# with open("answer.adoc", "w") as file:
-#     file.write(chat.content)
+with open("answer.adoc", "w") as file:
+    file.write(chat.content)
